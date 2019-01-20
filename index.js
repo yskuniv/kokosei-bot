@@ -15,10 +15,6 @@ exports.handler = (event, context, callback) => {
         id = messageData.source.groupId;
     }
 
-    if(!check(messageData.message.text)){
-        callback(null, 'Success!');
-        return;
-    }
     var postData = JSON.stringify(
     {
         "messages": [{
@@ -76,10 +72,4 @@ var getResponseMessage = function(message) {
         default:
             return message;
     }
-};
-
-var check = function(message) {
-    message = message.toLowerCase();
-    var pattern = '@bot ';
-    return message.indexOf(pattern) === 0;
 };
