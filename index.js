@@ -3,7 +3,7 @@
 const https = require('https');
 const querystring = require('querystring');
 
-exports.myHandler = (event, context, callback) => {
+exports.handler = (event, context, callback) => {
     console.log('EVENT:', event);
     var event_data = JSON.parse(event.body);
     console.log('EVENT:', JSON.stringify(event_data));
