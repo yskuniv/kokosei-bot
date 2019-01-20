@@ -11,7 +11,16 @@ exports.handler = (event, context, callback) => {
         id = messageData.source.groupId;
     }
 
-    const responseMessage = "かんちがいしないでよね";
+    var responseMessages = [
+        "かんちがいしないでよね",
+        "かってにしなさいよ",
+        "もうしらないんだから",
+        "ちょっとだけよ",
+    ];
+
+    var kokuRandom = (Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) / 5.0;
+
+    const responseMessage = responseMessages[Math.floor(kokuRandom * responseMessages.length)];
 
     var postData = JSON.stringify(
     {
