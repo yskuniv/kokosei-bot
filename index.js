@@ -27,7 +27,7 @@ exports.handler = (event, context, callback) => {
         "to": id
     });
         // @TODO KMSで管理
-    var ChannelAccessToken = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'; //チャンネル設定
+    var ChannelAccessToken = process.env.CHANNEL_ACCESS_TOKEN; //チャンネル設定
 
     //リクエストヘッダ
     var options = {
