@@ -4,8 +4,6 @@ const https = require('https');
 
 exports.handler = (event, context, callback) => {
     console.log('EVENT:', event);
-    // var event = JSON.parse(event.body);
-    console.log('EVENT:', JSON.stringify(event));
     const messageData = event.events && event.events[0];
     console.log("TEST:" + JSON.stringify(messageData.message.text));
     var id = messageData.source.userId;
