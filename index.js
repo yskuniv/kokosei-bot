@@ -1,7 +1,6 @@
 'use strict';
 
 const https = require('https');
-const querystring = require('querystring');
 
 exports.handler = (event, context, callback) => {
     console.log('EVENT:', event);
