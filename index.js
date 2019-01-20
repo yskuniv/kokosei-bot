@@ -15,11 +15,13 @@ exports.handler = (event, context, callback) => {
         id = messageData.source.groupId;
     }
 
+    const responseMessage = "かんちがいしないでよね";
+
     var postData = JSON.stringify(
     {
         "messages": [{
             "type": "text",
-            "text": getResponseMessage(messageData.message.text)
+            "text": responseMessage
         }],
         "to": id
     });
