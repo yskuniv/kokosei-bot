@@ -62,12 +62,3 @@ exports.handler = (event, context, callback) => {
     console.log("TEST:" + postData);
     callback(null, 'Success!');
 };
-
-var getResponseMessage = function(message) {
-    message = message.toLowerCase();
-    message = message.replace('@bot ', '');
-    switch (message) {
-        default:
-            return message;
-    }
-};
