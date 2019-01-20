@@ -5,7 +5,8 @@ const querystring = require('querystring');
 
 exports.handler = (event, context, callback) => {
     console.log('EVENT:', event);
-    var event_data = JSON.parse(event.body);
+    // var event_data = JSON.parse(event.body);
+    var event_data = event
     console.log('EVENT:', JSON.stringify(event_data));
     const messageData = event_data.events && event_data.events[0];
     console.log("TEST:" + JSON.stringify(messageData.message.text));
