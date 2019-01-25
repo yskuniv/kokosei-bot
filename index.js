@@ -11,6 +11,8 @@ exports.handler = (event, context, callback) => {
         id = messageData.source.groupId;
     }
 
+    1 + 1;
+
     var responseMessages = [
         "かんちがいしないでよね",
         "かってにしなさいよ",
