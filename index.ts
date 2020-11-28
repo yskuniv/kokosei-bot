@@ -4,9 +4,7 @@ import {
 } from "./types"
 const https = require('https')
 
-exports.handler = webhookHandler
-
-async function webhookHandler(eventObject: LineWebhookEventObject): Promise<string[]> {
+exports.handler = async (eventObject: LineWebhookEventObject) => {
   console.log('eventObject:', eventObject)
 
   return Promise.all(
