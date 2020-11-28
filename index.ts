@@ -4,7 +4,6 @@ import {
   MessageEvent,
   MessageEventTextMessage
 } from "./types"
-const https = require('https')
 
 exports.handler = async (event: LineWebhookEventObject) => {
   console.log('event:', event)
@@ -73,6 +72,8 @@ async function postJson(hostname: string, path: string, accessToken: string, jso
 }
 
 function httpsHelper(hostname: string, path: string, headers: Object, method: string, requestBody: string): Promise<Object> {
+  const https = require('https')
+
   const opts = {
     hostname: hostname,
     path: path,
