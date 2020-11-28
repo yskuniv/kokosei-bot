@@ -4,11 +4,11 @@ import {
 } from "./types"
 const https = require('https')
 
-exports.handler = async (eventObject: LineWebhookEventObject) => {
-  console.log('eventObject:', eventObject)
+exports.handler = async (event: LineWebhookEventObject) => {
+  console.log('eventObject:', event)
 
   return Promise.all(
-    eventObject.events
+    event.events
       .filter(ev => ev.type === 'message')
       .map(async ev => {
         console.log('event:', ev)
