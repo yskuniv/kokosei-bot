@@ -1,18 +1,22 @@
 import {
   LineWebhookEventObject,
-  EventSourceUser
+  EventSourceUser,
+  MessageEvent,
+  MessageEventTextMessage
 } from "./types"
 const https = require('https')
 
 exports.handler = async (event: LineWebhookEventObject) => {
-  console.log('eventObject:', event)
+  console.log('event:', event)
 
   return Promise.all(
     event.events
       .filter(ev => ev.type === 'message')
       .map(async ev => {
-        console.log('event:', ev)
+        const message = (ev as MessageEvent).message as MessageEventTextMessage
         const source = ev.source as EventSourceUser
+
+        console.log('user message:', message.text)
 
         const replyMessage = sample([
           "かんちがいしないでよね",
@@ -31,22 +35,25 @@ exports.handler = async (event: LineWebhookEventObject) => {
 async function pushMessage(destId: string, msg: string): Promise<void> {
   const accessToken = process.env.CHANNEL_ACCESS_TOKEN as string
 
-  const responseBody = await postJson(
-    'api.line.me',
-    '/v2/bot/message/push',
-    accessToken,
-    {
-      'messages': [
-        {
-          'type': 'text',
-          'text': msg
-        }
-      ],
-      'to': destId
-    }
-  )
-
-  // console.log(responseBody)
+  try {
+    const res = await postJson(
+      'api.line.me',
+      '/v2/bot/message/push',
+      accessToken,
+      {
+        'messages': [
+          {
+            'type': 'text',
+            'text': msg
+          }
+        ],
+        'to': destId
+      }
+    )
+    console.log('postJson succeeded:', res)
+  } catch (error) {
+    console.error('postJson failed:', error)
+  }
 }
 
 async function postJson(hostname: string, path: string, accessToken: string, jsonParams: Object): Promise<Object> {
