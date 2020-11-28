@@ -1,39 +1,8 @@
+import {
+  LineWebhookEventObject,
+  EventSourceUser
+} from "./types"
 const https = require('https')
-
-interface LineWebhookEventObject {
-  destination: string,
-  events: LineEvent[]
-}
-
-interface LineEvent {
-  type: string,
-  mode: string,
-  timestamp: number,
-  source: EventSource
-}
-
-interface EventSource {
-  type: string
-}
-
-interface EventSourceUser extends EventSource {
-  userId: string
-}
-
-interface MessageEvent extends LineEvent {
-  replyToken: string,
-  message: MessageEventMessage
-}
-
-interface MessageEventMessage {
-  id: string,
-  type: string
-}
-
-interface MessageEventTextMessage extends MessageEventMessage {
-  text: string
-  // TODO: 残りのパラメータを追加する
-}
 
 exports.handler = webhookHandler
 
