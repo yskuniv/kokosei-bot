@@ -8,7 +8,7 @@ import { sample } from './utils/misc'
 import { pushMessage } from './utils/line'
 
 exports.handler = async (event: LineWebhookEventObject) => {
-  console.log('event:', event)
+  console.log('Received event object:', event)
 
   return Promise.all(
     event.events
@@ -17,7 +17,7 @@ exports.handler = async (event: LineWebhookEventObject) => {
         const message = (ev as MessageEvent).message as MessageEventTextMessage
         const source = ev.source as EventSourceUser
 
-        console.log('user message:', message.text)
+        console.log('User message:', message.text)
 
         const replyMessage = sample([
           'かんちがいしないでよね',
