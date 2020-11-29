@@ -3,7 +3,7 @@ import {
   EventSourceUser,
   MessageEvent,
   MessageEventTextMessage
-} from "./types"
+} from './types'
 import { sample } from './utils/misc'
 import { pushMessage } from './utils/line'
 
@@ -20,10 +20,10 @@ exports.handler = async (event: LineWebhookEventObject) => {
         console.log('user message:', message.text)
 
         const replyMessage = sample([
-          "かんちがいしないでよね",
-          "かってにしなさいよ",
-          "もうしらないんだから",
-          "ちょっとだけよ",
+          'かんちがいしないでよね',
+          'かってにしなさいよ',
+          'もうしらないんだから',
+          'ちょっとだけよ',
         ])
 
         await pushMessage(source.userId, replyMessage)
