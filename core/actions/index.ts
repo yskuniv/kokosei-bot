@@ -1,4 +1,4 @@
-import { postJson } from './https'
+import { postJson } from './utils/https'
 
 const CHANNEL_ACCESS_TOKEN: string = process.env.CHANNEL_ACCESS_TOKEN as string
 
