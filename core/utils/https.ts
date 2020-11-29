@@ -1,6 +1,6 @@
 const https = require('https')
 
-export async function postJson(hostname: string, path: string, accessToken: string, jsonParams: Object): Promise<Object> {
+export async function postJson(hostname: string, path: string, accessToken: string, jsonParams: {}): Promise<{}> {
   const requestBody = JSON.stringify(jsonParams)
 
   return httpsRequest(
@@ -16,7 +16,7 @@ export async function postJson(hostname: string, path: string, accessToken: stri
   )
 }
 
-export function httpsRequest(hostname: string, path: string, headers: Object, method: string, requestBody: string): Promise<Object> {
+export function httpsRequest(hostname: string, path: string, headers: {}, method: string, requestBody: string): Promise<{}> {
   const opts = {
     hostname: hostname,
     path: path,
@@ -27,10 +27,10 @@ export function httpsRequest(hostname: string, path: string, headers: Object, me
   return new Promise((resolve, reject) => {
     const req = https.request(opts, (res: any) => {
       // res.setEncoding('utf8')
-      res.on('data', (responseBody: Object) => {
+      res.on('data', (responseBody: {}) => {
         resolve(responseBody)
       })
-    }).on('error', (error: Object) => {
+    }).on('error', (error: {}) => {
       reject(error)
     })
 
