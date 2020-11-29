@@ -3,11 +3,9 @@ import {
   MessageEvent,
   MessageEventTextMessage
 } from './core/types'
-import {
-  generateLambdaHandler
-} from './core'
+import { generateLambdaHandler } from './core'
+import { pushMessage } from './core/actions'
 import { sample } from './utils/misc'
-import { pushMessage } from './utils/line'
 
 async function jkBotMessageEventHandler(ev: MessageEvent): Promise<void> {
   const message = ev.message as MessageEventTextMessage  // TODO: Text以外のmessageに対応する
