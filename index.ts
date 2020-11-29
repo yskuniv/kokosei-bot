@@ -14,21 +14,24 @@ exports.handler = async (event: LineWebhookEventObject) => {
     event.events
       .filter(ev => ev.type === 'message')
       .map(async ev => {
-        const message = (ev as MessageEvent).message as MessageEventTextMessage
-        const source = ev.source as EventSourceUser
-
-        console.log('User message:', message.text)
-
-        const replyMessage = sample([
-          'かんちがいしないでよね',
-          'かってにしなさいよ',
-          'もうしらないんだから',
-          'ちょっとだけよ',
-        ])
-
-        await pushMessage(source.userId, replyMessage)
-
+        await messageEventHandler(ev as MessageEvent)
         return 'Success!'
       })
   )
+}
+
+async function messageEventHandler(ev: MessageEvent): Promise<void> {
+  const message = ev.message as MessageEventTextMessage
+  const source = ev.source as EventSourceUser  // TODO: user以外のsourceに対応する
+
+  console.log('User message:', message.text)
+
+  const replyMessage = sample([
+    'かんちがいしないでよね',
+    'かってにしなさいよ',
+    'もうしらないんだから',
+    'ちょっとだけよ',
+  ])
+
+  await pushMessage(source.userId, replyMessage)
 }
