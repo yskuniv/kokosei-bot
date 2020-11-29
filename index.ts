@@ -21,7 +21,7 @@ exports.handler = async (event: LineWebhookEventObject) => {
 }
 
 async function messageEventHandler(ev: MessageEvent): Promise<void> {
-  const message = ev.message as MessageEventTextMessage
+  const message = ev.message as MessageEventTextMessage  // TODO: Text以外のmessageに対応する
   const source = ev.source as EventSourceUser  // TODO: user以外のsourceに対応する
 
   console.log('User message:', message.text)
