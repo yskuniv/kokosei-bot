@@ -4,26 +4,24 @@ import {
   MessageEventHandler
 } from './types'
 
-type AwsLambdaHandler = (event: {}) => Promise<any>
+type AwsLambdaHandler = (event: {}, context: {}, callback: (...args: any[]) => void) => void
 
 export function generateAwsLambdaHandler(messageEventHandler: MessageEventHandler): AwsLambdaHandler {
-  return async (event: {}) => {
+  return (event: {}, _context: {}, callback: (...args: any[]) => void) => {
+    callback(null, 200)
+
     const eventObject = event as LineWebhookEventObject
 
     console.log('Received event object:', eventObject)
 
-    return Promise.all(
-      eventObject.events
-        .map(async ev => {
-          if (ev.type === 'message') {
-            const ev_ = ev as MessageEvent
-            await messageEventHandler(ev_)
-          } else {
-            // do nothing
-          }
-
-          return 'succeeded'
-        })
-    )
+    eventObject.events
+      .forEach(async ev => {
+        if (ev.type === 'message') {
+          const ev_ = ev as MessageEvent
+          messageEventHandler(ev_)
+        } else {
+          // do nothing
+        }
+      })
   }
 }
