@@ -3,7 +3,7 @@ import {
   MessageEvent,
   MessageEventTextMessage
 } from './core/types'
-import { generateLambdaHandler } from './core'
+import { generateAwsLambdaHandler } from './core'
 import { pushMessage } from './core/actions'
 import { sample } from './utils/misc'
 
@@ -23,4 +23,4 @@ async function jkBotMessageEventHandler(ev: MessageEvent): Promise<void> {
   await pushMessage(source.userId, replyMessage)
 }
 
-exports.handler = generateLambdaHandler(jkBotMessageEventHandler)
+exports.handler = generateAwsLambdaHandler(jkBotMessageEventHandler)
