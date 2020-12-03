@@ -1,17 +1,9 @@
-import {
-  EventSourceUser,
-  MessageEvent,
-  MessageEventTextMessage
-} from './core/types'
+import { ReplyAction } from './core/types'
 import { generateAwsLambdaHandler } from './core'
-import { pushMessage } from './core/actions'
 import { sample } from './utils/misc'
 
-async function jkBotMessageEventHandler(ev: MessageEvent): Promise<void> {
-  const message = ev.message as MessageEventTextMessage  // TODO: Text以外のmessageに対応する
-  const source = ev.source as EventSourceUser  // TODO: user以外のsourceに対応する
-
-  console.log('User message:', message.text)
+async function jkBotMessageHandler(message: string, reply: ReplyAction): Promise<void> {
+  console.log('User message:', message)
 
   const replyMessage = sample([
     'かんちがいしないでよね',
@@ -20,7 +12,7 @@ async function jkBotMessageEventHandler(ev: MessageEvent): Promise<void> {
     'ちょっとだけよ',
   ])
 
-  await pushMessage(source.userId, replyMessage)
+  await reply(replyMessage)
 }
 
-exports.handler = generateAwsLambdaHandler(jkBotMessageEventHandler)
+exports.handler = generateAwsLambdaHandler(jkBotMessageHandler)
