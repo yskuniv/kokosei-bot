@@ -1,5 +1,5 @@
 dist.zip: build
-	cd dist/ && zip -r ../$@ *
+	rm -f $@ && cd dist/ && zip -r ../$@ *
 
 build:
 	npx tsc
