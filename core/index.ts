@@ -6,7 +6,7 @@ import {
 
 type AwsLambdaHandler = (event: {}) => Promise<any>
 
-export function generateLambdaHandler(messageEventHandler: MessageEventHandler): AwsLambdaHandler {
+export function generateAwsLambdaHandler(messageEventHandler: MessageEventHandler): AwsLambdaHandler {
   return async (event: {}) => {
     const eventObject = event as LineWebhookEventObject
 
