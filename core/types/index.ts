@@ -7,8 +7,6 @@ export {
   MessageEventMessage,
   MessageEventTextMessage
 } from './lineWebhookEventObjects'
-import {
-  MessageEvent
-} from './lineWebhookEventObjects'
 
-export type MessageEventHandler = (ev: MessageEvent) => Promise<void>
+export type ReplyAction = (text: string) => Promise<void>
+export type MessageHandler = (message: string, reply: ReplyAction) => Promise<void>
