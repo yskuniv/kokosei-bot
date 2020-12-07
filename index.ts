@@ -1,5 +1,7 @@
-import { ReplyAction } from './core/types'
-import { generateAwsLambdaHandler } from './core'
+import {
+  ReplyAction,
+  generateAwsLambdaHandler
+} from 'aws-lambda-bot'
 import { sample } from './utils/misc'
 
 async function jkBotMessageHandler(message: string, reply: ReplyAction): Promise<void> {
